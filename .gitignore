@@ -1,0 +1,24 @@
+# === Data & Large Artifact Safety ===
+data/
+*.txt
+*.csv
+*.zip
+*.tar.gz
+
+# === Python Virtual Environments ===
+.venv/
+venv/
+ENV/
+env/
+bin/
+lib/
+include/
+
+# === IDE & Cache Elements ===
+.vscode/
+.idea/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.ipynb_checkpoints/
