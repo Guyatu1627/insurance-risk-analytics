@@ -1,24 +1,12 @@
-# === Data & Large Artifact Safety ===
+# Data Safety Architecture (DVC Tracked targets)
 data/
 *.txt
 *.csv
-*.zip
-*.tar.gz
+*.parquet
 
-# === Python Virtual Environments ===
+# Python Environment and Notebook Cache
 .venv/
 venv/
-ENV/
-env/
-bin/
-lib/
-include/
-
-# === IDE & Cache Elements ===
-.vscode/
-.idea/
 __pycache__/
 *.pyc
-*.pyo
-*.pyd
 .ipynb_checkpoints/
