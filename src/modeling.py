@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+from sklearn.impute import SimpleImputer
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.ensemble import RandomForestRegressor
@@ -31,10 +32,20 @@ class InsurancePredictiveModeler:
         working_df = working_df.drop(columns=high_card)
         
         X = working_df.drop(columns=[target_col, 'Loss_Ratio', 'Margin'], errors='ignore')
-        y = working_df[target_col]
+        y = pd.to_numeric(working_df[target_col], errors='coerce')
         
         X_encoded = pd.get_dummies(X, drop_first=True)
-        return X_encoded, y
+        X_encoded = X_encoded.dropna(axis=1, how='all')
+
+        imputer = SimpleImputer(strategy='mean')
+        X_imputed = pd.DataFrame(
+            imputer.fit_transform(X_encoded),
+            columns=X_encoded.columns,
+            index=X_encoded.index,
+        )
+        
+        non_missing = y.notna()
+        return X_imputed.loc[non_missing], y.loc[non_missing]
 
     def evaluate_all_models(self, X, y) -> pd.DataFrame:
         """Trains all 3 challenge targets and outputs benchmarking scores."""
