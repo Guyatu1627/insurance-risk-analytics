@@ -1,12 +1,6 @@
-# Data Safety Architecture (DVC Tracked targets)
-data/
-*.txt
-*.csv
-*.parquet
-
-# Python Environment and Notebook Cache
-.venv/
 venv/
+.venv/
 __pycache__/
-*.pyc
+.pytest_cache/
 .ipynb_checkpoints/
+data/MachineLearningRating_v3.txt
